@@ -20,4 +20,16 @@ public interface Auditable {
 
 	NIP getDeletedBy();
 
+	void update(LocalDateTime updatedAt, NIP updatedBy);
+
+	void update(NIP updatedBy);
+
+	void delete(LocalDateTime deletedAt, NIP deletedBy);
+
+	void delete(NIP deletedBy);
+
+	void restore(LocalDateTime restoreAt, NIP restoredBy);
+
+	void restore(NIP restoredBy);
+
 }

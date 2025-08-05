@@ -6,15 +6,12 @@ import com.rendyrobbani.latte.domain.model.valueobject.NIP;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
 @MappedSuperclass
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class AbstractLockableEntity extends AbstractAuditableEntity implements Lockable {
 
 	@Column(name = "is_locked")
@@ -27,6 +24,32 @@ public abstract class AbstractLockableEntity extends AbstractAuditableEntity imp
 	@Column(name = "locked_by")
 	protected NIP lockedBy;
 
+	@Override
+	public void lock(LocalDateTime lockedAt, NIP lockedBy) {
+		this.isLocked = true;
+		this.lockedAt = lockedAt;
+		this.lockedBy = lockedBy;
+	}
+
+	@Override
+	public void lock(NIP lockedBy) {
+		this.lock(LocalDateTime.now(), lockedBy);
+	}
+
+	@Override
+	public void unlock(LocalDateTime unlockedAt, NIP unlockedBy) {
+		this.isLocked = false;
+		this.lockedAt = null;
+		this.lockedBy = null;
+		this.updatedAt = unlockedAt;
+		this.updatedBy = unlockedBy;
+	}
+
+	@Override
+	public void unlock(NIP unlockedBy) {
+		this.unlock(LocalDateTime.now(), unlockedBy);
+	}
+
 	protected AbstractLockableEntity(LocalDateTime createdAt, NIP createdBy) {
 		super(createdAt, createdBy);
 		this.isLocked = false;
@@ -34,6 +57,10 @@ public abstract class AbstractLockableEntity extends AbstractAuditableEntity imp
 
 	protected AbstractLockableEntity(NIP createdBy) {
 		this(LocalDateTime.now(), createdBy);
+	}
+
+	protected AbstractLockableEntity() {
+		this(LocalDateTime.now(), null);
 	}
 
 }

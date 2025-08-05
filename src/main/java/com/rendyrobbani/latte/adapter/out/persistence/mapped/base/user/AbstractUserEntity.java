@@ -6,19 +6,18 @@ import com.rendyrobbani.latte.adapter.out.persistence.mapped.base.AbstractLockab
 import com.rendyrobbani.latte.domain.meta.Gender;
 import com.rendyrobbani.latte.domain.meta.PangkatASN;
 import com.rendyrobbani.latte.domain.model.entity.base.user.User;
+import com.rendyrobbani.latte.domain.model.valueobject.NIP;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @MappedSuperclass
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class AbstractUserEntity extends AbstractLockableEntity implements User {
 
 	@Convert(converter = PangkatASNConverter.class)
@@ -59,5 +58,17 @@ public abstract class AbstractUserEntity extends AbstractLockableEntity implemen
 
 	@Column(name = "is_p3k")
 	protected boolean isP3K;
+
+	protected AbstractUserEntity(LocalDateTime createdAt, NIP createdBy) {
+		super(createdAt, createdBy);
+	}
+
+	protected AbstractUserEntity(NIP createdBy) {
+		super(createdBy);
+	}
+
+	protected AbstractUserEntity() {
+		super();
+	}
 
 }

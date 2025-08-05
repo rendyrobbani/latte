@@ -10,4 +10,12 @@ public interface Lockable {
 
 	NIP getLockedBy();
 
+	void lock(LocalDateTime lockedAt, NIP lockedBy);
+
+	void lock(NIP lockedBy);
+
+	void unlock(LocalDateTime unlockedAt, NIP unlockedBy);
+
+	void unlock(NIP unlockedBy);
+
 }

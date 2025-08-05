@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Pattern;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class NIPFactory {
@@ -20,6 +19,8 @@ public final class NIPFactory {
 
 		private final String value;
 
+		private final String formattedValue;
+
 		private final LocalDate birthDate;
 
 		private final LocalDate startDate;
@@ -30,18 +31,23 @@ public final class NIPFactory {
 
 	}
 
-	public static NIP create(String value) {
+	public static NIP parse(String value) {
 		if (value == null) throw new IllegalArgumentException("value cannot be null");
 
-		var matcher = Pattern.compile(NIP.REGEX).matcher(value);
-		if (!matcher.matches()) throw new IllegalArgumentException("invalid value");
+		if (!value.matches(NIP.REGEX)) throw new IllegalArgumentException("invalid value");
+
+		var valueOfBirthDate = value.substring(getMapOfBirthDate()[0], getMapOfBirthDate()[1]);
+		var valueOfStartDate = value.substring(getMapOfStartDate()[0], getMapOfStartDate()[1]);
+		var valueOfGender = value.substring(getMapOfGender()[0], getMapOfGender()[1]);
+		var valueOfNumber = value.substring(getMapOfNumber()[0], getMapOfNumber()[1]);
 
 		return new NIPImpl(
 				value,
-				parseBirthDate(value),
-				parseStartDate(value),
-				parseGender(value),
-				parseNumber(value)
+				String.join(" ", valueOfBirthDate, valueOfStartDate, valueOfGender, valueOfNumber),
+				LocalDate.parse(valueOfBirthDate, getFormatter()),
+				valueOfStartDate.endsWith("21") ? null : LocalDate.parse(valueOfStartDate + "01", getFormatter()),
+				Gender.fromValue(valueOfGender),
+				Integer.valueOf(valueOfNumber)
 		);
 	}
 
@@ -52,21 +58,32 @@ public final class NIPFactory {
 		return formatter;
 	}
 
-	private static LocalDate parseBirthDate(String value) {
-		return LocalDate.parse(value.substring(0, 8), getFormatter());
+	private static int[] mapOfBirthDate;
+
+	private static int[] getMapOfBirthDate() {
+		if (mapOfBirthDate == null) mapOfBirthDate = new int[]{0, 8};
+		return mapOfBirthDate;
 	}
 
-	private static LocalDate parseStartDate(String value) {
-		if (value.substring(8, 14).endsWith("21")) return null;
-		return LocalDate.parse(value.substring(8, 14) + "01", getFormatter());
+	private static int[] mapOfStartDate;
+
+	private static int[] getMapOfStartDate() {
+		if (mapOfStartDate == null) mapOfStartDate = new int[]{8, 14};
+		return mapOfStartDate;
 	}
 
-	private static Gender parseGender(String value) {
-		return Gender.fromValue(value.substring(14, 15));
+	private static int[] mapOfGender;
+
+	private static int[] getMapOfGender() {
+		if (mapOfGender == null) mapOfGender = new int[]{14, 15};
+		return mapOfGender;
 	}
 
-	private static Integer parseNumber(String value) {
-		return Integer.parseInt(value.substring(15, 18));
+	private static int[] mapOfNumber;
+
+	private static int[] getMapOfNumber() {
+		if (mapOfNumber == null) mapOfNumber = new int[]{15, 18};
+		return mapOfNumber;
 	}
 
 }

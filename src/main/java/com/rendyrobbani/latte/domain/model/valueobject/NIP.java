@@ -2,7 +2,7 @@ package com.rendyrobbani.latte.domain.model.valueobject;
 
 import com.rendyrobbani.latte.domain.meta.Gender;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public interface NIP {
 
@@ -10,9 +10,11 @@ public interface NIP {
 
 	String getValue();
 
-	LocalDateTime getBirthDate();
+	String getFormattedValue();
 
-	LocalDateTime getStartDate();
+	LocalDate getBirthDate();
+
+	LocalDate getStartDate();
 
 	Gender getGender();
 

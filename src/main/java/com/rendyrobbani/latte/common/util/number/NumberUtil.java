@@ -1,6 +1,5 @@
 package com.rendyrobbani.latte.common.util.number;
 
-import com.rendyrobbani.latte.common.util.number.pad.NumberPadUtil;
 import com.rendyrobbani.latte.common.util.number.roman.RomanNumberUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -8,19 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class NumberUtil {
 
-	public static String lpadZero(Integer number, int length) {
-		return NumberPadUtil.lpadZero(number, length);
-	}
-
-	public static String lpadZero(Long number, int length) {
-		return NumberPadUtil.lpadZero(number, length);
-	}
-
-	public static String toRoman(Integer number) {
-		return RomanNumberUtil.toRoman(number);
-	}
-
-	public static String toRoman(Long number) {
+	public static String toRoman(int number) {
 		return RomanNumberUtil.toRoman(number);
 	}
 

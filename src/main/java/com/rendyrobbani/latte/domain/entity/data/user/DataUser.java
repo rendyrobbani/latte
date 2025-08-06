@@ -1,13 +1,14 @@
-package com.rendyrobbani.latte.domain.data.user;
+package com.rendyrobbani.latte.domain.entity.data.user;
 
+import com.rendyrobbani.latte.common.marker.HasAuditMutator;
 import com.rendyrobbani.latte.common.marker.HasId;
 import com.rendyrobbani.latte.common.marker.HasLockMutator;
 import com.rendyrobbani.latte.common.vo.Pangkat;
-import com.rendyrobbani.latte.domain.base.user.User;
+import com.rendyrobbani.latte.domain.entity.base.user.User;
 
 import java.time.LocalDate;
 
-public interface DataUser extends User, HasId<String>, HasLockMutator {
+public interface DataUser extends User, HasId<String>, HasLockMutator, HasAuditMutator {
 
 	void setPangkat(Pangkat pangkat);
 

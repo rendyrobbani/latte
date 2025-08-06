@@ -3,7 +3,7 @@ package com.rendyrobbani.latte.infra.persistence.entity.base.user;
 import com.rendyrobbani.latte.common.vo.Gender;
 import com.rendyrobbani.latte.common.vo.NIP;
 import com.rendyrobbani.latte.common.vo.Pangkat;
-import com.rendyrobbani.latte.domain.base.user.User;
+import com.rendyrobbani.latte.domain.entity.base.user.User;
 import com.rendyrobbani.latte.infra.persistence.converter.GenderConverter;
 import com.rendyrobbani.latte.infra.persistence.converter.NIPConverter;
 import com.rendyrobbani.latte.infra.persistence.converter.PangkatConverter;
@@ -72,5 +72,9 @@ public abstract class UserEntity extends BaseEntity implements User {
 	@Convert(converter = NIPConverter.class)
 	@Column(name = "locked_by")
 	protected NIP lockedBy;
+
+	public UserEntity(LocalDateTime createdAt, NIP createdBy) {
+		super(createdAt, createdBy);
+	}
 
 }

@@ -1,4 +1,4 @@
-package com.rendyrobbani.latte.domain.base.user;
+package com.rendyrobbani.latte.domain.entity.base.user;
 
 import com.rendyrobbani.latte.common.marker.*;
 

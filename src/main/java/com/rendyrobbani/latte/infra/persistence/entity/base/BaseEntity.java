@@ -2,7 +2,10 @@ package com.rendyrobbani.latte.infra.persistence.entity.base;
 
 import com.rendyrobbani.latte.common.marker.HasAuditable;
 import com.rendyrobbani.latte.common.vo.NIP;
+import com.rendyrobbani.latte.infra.persistence.converter.NIPConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +16,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@MappedSuperclass
 public abstract class BaseEntity implements Serializable, HasAuditable {
 
 	@Serial
@@ -21,12 +25,14 @@ public abstract class BaseEntity implements Serializable, HasAuditable {
 	@Column(name = "created_at")
 	protected LocalDateTime createdAt;
 
+	@Convert(converter = NIPConverter.class)
 	@Column(name = "created_by")
 	protected NIP createdBy;
 
 	@Column(name = "updated_at")
 	protected LocalDateTime updatedAt;
 
+	@Convert(converter = NIPConverter.class)
 	@Column(name = "updated_by")
 	protected NIP updatedBy;
 
@@ -36,10 +42,11 @@ public abstract class BaseEntity implements Serializable, HasAuditable {
 	@Column(name = "deleted_at")
 	protected LocalDateTime deletedAt;
 
+	@Convert(converter = NIPConverter.class)
 	@Column(name = "deleted_by")
 	protected NIP deletedBy;
 
-	public BaseEntity(LocalDateTime createdAt, NIP createdBy) {
+	protected BaseEntity(LocalDateTime createdAt, NIP createdBy) {
 		this.createdAt = createdAt != null ? createdAt : LocalDateTime.now() ;
 		this.createdBy = createdBy;
 		this.updatedAt = null;

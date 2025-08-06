@@ -2,13 +2,10 @@ package com.rendyrobbani.latte.infra.persistence.entity.data.user;
 
 import com.rendyrobbani.latte.common.vo.NIP;
 import com.rendyrobbani.latte.common.vo.Pangkat;
-import com.rendyrobbani.latte.domain.data.user.DataUser;
+import com.rendyrobbani.latte.domain.entity.data.user.DataUser;
 import com.rendyrobbani.latte.infra.persistence.converter.NIPConverter;
 import com.rendyrobbani.latte.infra.persistence.entity.base.user.UserEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
+@Table(name = "data_user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DataUserEntity extends UserEntity implements DataUser {
 
@@ -90,6 +88,7 @@ public class DataUserEntity extends UserEntity implements DataUser {
 	}
 
 	public DataUserEntity(NIP nip, LocalDateTime createdAt, NIP createdBy) {
+		super(createdAt, createdBy);
 		this.id = nip.getValue();
 		this.nip = nip;
 		this.birthDate = nip.getBirthDate();
@@ -97,9 +96,6 @@ public class DataUserEntity extends UserEntity implements DataUser {
 		this.gender = nip.getGender();
 		this.number = nip.getNumber();
 		this.isLocked = false;
-		this.createdAt = createdAt != null ? createdAt : LocalDateTime.now();
-		this.createdBy = createdBy;
-		this.isDeleted = false;
 	}
 
 }

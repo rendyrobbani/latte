@@ -1,6 +1,6 @@
 package com.rendyrobbani.latte.common.vo;
 
-import com.rendyrobbani.latte.common.util.number.NumberUtil;
+import com.rendyrobbani.common.util.number.NumberUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

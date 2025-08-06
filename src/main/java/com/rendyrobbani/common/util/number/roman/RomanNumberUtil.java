@@ -1,4 +1,4 @@
-package com.rendyrobbani.latte.common.util.number.roman;
+package com.rendyrobbani.common.util.number.roman;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,8 @@ public final class RomanNumberUtil {
 			'M', 1000
 	);
 
-	public static String toRoman(int number) {
+	public static String toRoman(Integer number) {
+		if (number == null) throw new IllegalArgumentException("number cannot be null");
 		if (number <= 0 || number > 3999) throw new IllegalArgumentException("Number must be between 1 and 3999");
 
 		StringBuilder result = new StringBuilder();
@@ -39,6 +40,10 @@ public final class RomanNumberUtil {
 			}
 		}
 		return result.toString();
+	}
+
+	public static String toRoman(Long number) {
+		return toRoman(number.intValue());
 	}
 
 	public static String toRoman(String number) {

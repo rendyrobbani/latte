@@ -1,7 +1,6 @@
 package com.rendyrobbani.latte.schema.specification.logs.master.program;
 
 import com.rendyrobbani.common.schema.*;
-import com.rendyrobbani.latte.schema.factory.LatteCheckFactory;
 import com.rendyrobbani.latte.schema.factory.LatteColumnFactory;
 import com.rendyrobbani.latte.schema.specification.base.LoggableTable;
 import com.rendyrobbani.latte.schema.specification.base.master.program.MasterProgramTable;

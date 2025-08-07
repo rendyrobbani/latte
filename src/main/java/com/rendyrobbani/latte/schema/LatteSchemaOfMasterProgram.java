@@ -6,6 +6,7 @@ import com.rendyrobbani.common.schema.SchemaFactory;
 import com.rendyrobbani.common.schema.Table;
 import com.rendyrobbani.latte.schema.specification.data.master.program.DataMasterProgramTable;
 import com.rendyrobbani.latte.schema.specification.logs.master.program.LogsMasterProgramTable;
+import com.rendyrobbani.latte.schema.specification.sipd.master.program.SIPDMasterProgramTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +25,7 @@ public final class LatteSchemaOfMasterProgram {
 			tables = new ArrayList<>();
 			tables.add(DataMasterProgramTable.getTable());
 			tables.add(LogsMasterProgramTable.getTable());
+			tables.add(SIPDMasterProgramTable.getTable());
 		}
 		return tables;
 	}
@@ -45,6 +47,7 @@ public final class LatteSchemaOfMasterProgram {
 			foreignKeys = new ArrayList<>();
 			foreignKeys.addAll(DataMasterProgramTable.getForeignKeys());
 			foreignKeys.addAll(LogsMasterProgramTable.getForeignKeys());
+			foreignKeys.addAll(SIPDMasterProgramTable.getForeignKeys());
 		}
 		return foreignKeys;
 	}

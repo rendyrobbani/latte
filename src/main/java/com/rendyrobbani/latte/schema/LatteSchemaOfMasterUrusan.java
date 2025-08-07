@@ -8,6 +8,8 @@ import com.rendyrobbani.latte.schema.specification.data.master.urusan.DataMaster
 import com.rendyrobbani.latte.schema.specification.data.master.urusan.DataMasterBidangTable;
 import com.rendyrobbani.latte.schema.specification.logs.master.urusan.LogsMasterUrusanTable;
 import com.rendyrobbani.latte.schema.specification.logs.master.urusan.LogsMasterBidangTable;
+import com.rendyrobbani.latte.schema.specification.sipd.master.urusan.SIPDMasterBidangTable;
+import com.rendyrobbani.latte.schema.specification.sipd.master.urusan.SIPDMasterUrusanTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -26,8 +28,10 @@ public final class LatteSchemaOfMasterUrusan {
 			tables = new ArrayList<>();
 			tables.add(DataMasterUrusanTable.getTable());
 			tables.add(LogsMasterUrusanTable.getTable());
+			tables.add(SIPDMasterUrusanTable.getTable());
 			tables.add(DataMasterBidangTable.getTable());
 			tables.add(LogsMasterBidangTable.getTable());
+			tables.add(SIPDMasterBidangTable.getTable());
 		}
 		return tables;
 	}
@@ -50,8 +54,10 @@ public final class LatteSchemaOfMasterUrusan {
 			foreignKeys = new ArrayList<>();
 			foreignKeys.addAll(DataMasterUrusanTable.getForeignKeys());
 			foreignKeys.addAll(LogsMasterUrusanTable.getForeignKeys());
+			foreignKeys.addAll(SIPDMasterUrusanTable.getForeignKeys());
 			foreignKeys.addAll(DataMasterBidangTable.getForeignKeys());
 			foreignKeys.addAll(LogsMasterBidangTable.getForeignKeys());
+			foreignKeys.addAll(SIPDMasterBidangTable.getForeignKeys());
 		}
 		return foreignKeys;
 	}

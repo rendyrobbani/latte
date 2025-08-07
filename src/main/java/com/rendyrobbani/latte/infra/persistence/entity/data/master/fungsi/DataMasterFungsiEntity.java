@@ -32,6 +32,10 @@ public class DataMasterFungsiEntity extends MasterFungsiEntity implements DataMa
 		this.id = classification.getFungsiCode();
 		this.code = classification.getFungsiCode();
 		this.isLocked = classification.getFungsiCode().startsWith("00");
+		if (this.isLocked) {
+			this.lockedAt = createdAt;
+			this.lockedBy = createdBy;
+		}
 	}
 
 }

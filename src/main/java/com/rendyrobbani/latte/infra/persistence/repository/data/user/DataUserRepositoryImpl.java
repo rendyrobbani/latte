@@ -17,7 +17,7 @@ public class DataUserRepositoryImpl extends BaseRepositoryImpl<String, DataUser,
 	}
 
 	@Override
-	protected JpaRepository<DataUserEntity, String> getJpaRepository() {
+	protected JpaRepository<DataUserEntity, String> getRepository() {
 		return this.repository;
 	}
 

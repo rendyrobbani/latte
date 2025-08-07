@@ -79,6 +79,11 @@ public final class LatteCheckFactory {
 		return create(index, table, logic);
 	}
 
+	public static Check columnStartsWithColumn(Integer index, Table table, Column column1, Column column2) {
+		var logic = column2.getName() + " is null or (left(" + column1.getName() + ", length(" + column2.getName() + ")) = " + column2.getName() + ")";
+		return create(index, table, logic);
+	}
+
 	// Latte
 
 	public static Check columnIsNIP(Integer index, Table table, Column column) {

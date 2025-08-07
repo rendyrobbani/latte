@@ -10,15 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LogsUserRepositoryImpl extends BaseRepositoryImpl<Long, LogsUser, LogsUserEntity> implements LogsUserRepository {
 
-	private final LogsUserJpaRepository jpaRepository;
+	private final LogsUserJpaRepository repository;
 
-	public LogsUserRepositoryImpl(LogsUserJpaRepository jpaRepository) {
-		this.jpaRepository = jpaRepository;
+	public LogsUserRepositoryImpl(LogsUserJpaRepository repository) {
+		this.repository = repository;
 	}
 
 	@Override
-	protected JpaRepository<LogsUserEntity, Long> getJpaRepository() {
-		return jpaRepository;
+	protected JpaRepository<LogsUserEntity, Long> getRepository() {
+		return repository;
 	}
 
 }

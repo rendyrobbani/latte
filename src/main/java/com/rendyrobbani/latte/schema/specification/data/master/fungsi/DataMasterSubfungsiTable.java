@@ -23,6 +23,7 @@ public final class DataMasterSubfungsiTable {
 			columns = new ArrayList<>();
 			columns.add(LatteColumnFactory.createSubfungsiCode("id", false, true));
 			columns.addAll(MasterSubfungsiTable.getColumns());
+			columns.add(LatteColumnFactory.createFungsiCode("fungsi_id", false));
 		}
 		return columns;
 	}
@@ -41,7 +42,7 @@ public final class DataMasterSubfungsiTable {
 			checks = new ArrayList<>();
 			checks.add(LatteCheckFactory.columnEqualsColumn(checks.size() + 1, getTable(), getTable().getId(), getTable().findColumn("code")));
 			checks.addAll(MasterSubfungsiTable.getChecks(checks.size() + 1, getTable()));
-			columns.add(LatteColumnFactory.createFungsiCode("fungsi_id", false));
+			checks.add(LatteCheckFactory.columnStartsWithColumn(checks.size() + 1, getTable(), getTable().getId(), getTable().findColumn("fungsi_id")));
 		}
 		return checks;
 	}

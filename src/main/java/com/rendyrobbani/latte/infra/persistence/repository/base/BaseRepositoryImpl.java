@@ -10,24 +10,24 @@ import java.util.Optional;
 @SuppressWarnings("unchecked")
 public abstract class BaseRepositoryImpl<ID, DOMAIN, ENTITY> implements BaseRepository<ID, DOMAIN> {
 
-	protected abstract JpaRepository<ENTITY, ID> getJpaRepository();
+	protected abstract JpaRepository<ENTITY, ID> getRepository();
 
 	@Override
 	public List<DOMAIN> findAll() {
 		var domains = new ArrayList<DOMAIN>();
-		for (var entity : getJpaRepository().findAll()) domains.add((DOMAIN) entity);
+		for (var entity : getRepository().findAll()) domains.add((DOMAIN) entity);
 		return domains;
 	}
 
 	@Override
 	public Optional<DOMAIN> findById(ID id) {
-		var entity = getJpaRepository().findById(id).orElse(null);
+		var entity = getRepository().findById(id).orElse(null);
 		return entity != null ? Optional.of((DOMAIN) entity) : Optional.empty();
 	}
 
 	@Override
 	public DOMAIN save(DOMAIN domain) {
-		return (DOMAIN) getJpaRepository().save((ENTITY) domain);
+		return (DOMAIN) getRepository().save((ENTITY) domain);
 	}
 
 }

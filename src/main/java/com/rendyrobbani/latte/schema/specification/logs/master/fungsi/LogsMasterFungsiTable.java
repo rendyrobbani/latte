@@ -54,6 +54,7 @@ public final class LogsMasterFungsiTable {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
 			foreignKeys.addAll(MasterFungsiTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
+			foreignKeys.addAll(LoggableTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
 			foreignKeys.add(ForeignKeyFactory.create(
 					foreignKeys.size() + 1,
 					getTable(),

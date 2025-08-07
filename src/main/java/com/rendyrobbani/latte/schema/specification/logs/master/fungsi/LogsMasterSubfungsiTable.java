@@ -53,6 +53,7 @@ public final class LogsMasterSubfungsiTable {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
 			foreignKeys.addAll(MasterSubfungsiTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
+			foreignKeys.addAll(LoggableTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
 			foreignKeys.add(ForeignKeyFactory.create(
 					foreignKeys.size() + 1,
 					getTable(),

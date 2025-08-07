@@ -30,12 +30,6 @@ public final class MasterFungsiTable {
 		return columns;
 	}
 
-	public static List<Constraint> getChecks(Integer index, Table table) {
-		var checks = new ArrayList<Constraint>();
-		checks.add(LatteCheckFactory.columnIsFungsiCode(checks.size() + index, table, table.findColumn("code")));
-		return checks;
-	}
-
 	@SuppressWarnings("JavaExistingMethodCanBeUsed")
 	public static List<Constraint> getForeignKeys(Integer index, Table table) {
 		var foreignKeys = new ArrayList<Constraint>();

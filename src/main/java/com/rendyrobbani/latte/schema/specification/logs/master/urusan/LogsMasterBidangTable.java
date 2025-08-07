@@ -1,10 +1,10 @@
-package com.rendyrobbani.latte.schema.specification.logs.master.fungsi;
+package com.rendyrobbani.latte.schema.specification.logs.master.urusan;
 
 import com.rendyrobbani.common.schema.*;
 import com.rendyrobbani.latte.schema.factory.LatteColumnFactory;
 import com.rendyrobbani.latte.schema.specification.base.LoggableTable;
-import com.rendyrobbani.latte.schema.specification.base.master.fungsi.MasterSubfungsiTable;
-import com.rendyrobbani.latte.schema.specification.data.master.fungsi.DataMasterSubfungsiTable;
+import com.rendyrobbani.latte.schema.specification.base.master.urusan.MasterBidangTable;
+import com.rendyrobbani.latte.schema.specification.data.master.urusan.DataMasterBidangTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -13,9 +13,9 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class LogsMasterSubfungsiTable {
+public final class LogsMasterBidangTable {
 
-	public static final String NAME = "logs_master_subfungsi";
+	public static final String NAME = "logs_master_bidang";
 
 	private static List<Column> columns;
 
@@ -23,9 +23,9 @@ public final class LogsMasterSubfungsiTable {
 		if (columns == null) {
 			columns = new ArrayList<>();
 			columns.add(LatteColumnFactory.createBigInt("id", false, true, true));
-			columns.addAll(MasterSubfungsiTable.getColumns());
+			columns.addAll(MasterBidangTable.getColumns());
 			columns.addAll(LoggableTable.getColumns());
-			columns.add(LatteColumnFactory.copyOf("subject_id", DataMasterSubfungsiTable.getTable().getId(), false));
+			columns.add(LatteColumnFactory.copyOf("subject_id", DataMasterBidangTable.getTable().getId(), false));
 		}
 		return columns;
 	}
@@ -42,14 +42,14 @@ public final class LogsMasterSubfungsiTable {
 	public static List<Constraint> getForeignKeys() {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
-			foreignKeys.addAll(MasterSubfungsiTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
+			foreignKeys.addAll(MasterBidangTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
 			foreignKeys.addAll(LoggableTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
 			foreignKeys.add(ForeignKeyFactory.create(
 					foreignKeys.size() + 1,
 					getTable(),
 					getTable().findColumn("subject_id"),
-					DataMasterSubfungsiTable.getTable(),
-					DataMasterSubfungsiTable.getTable().getId()
+					DataMasterBidangTable.getTable(),
+					DataMasterBidangTable.getTable().getId()
 			));
 		}
 		return foreignKeys;

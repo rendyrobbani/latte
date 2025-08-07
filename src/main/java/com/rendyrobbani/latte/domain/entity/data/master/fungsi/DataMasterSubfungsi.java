@@ -14,6 +14,4 @@ public interface DataMasterSubfungsi extends MasterSubfungsi, HasId<String>, Has
 		return this.getId();
 	}
 
-
-
 }

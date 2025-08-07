@@ -1,4 +1,4 @@
-package com.rendyrobbani.latte.schema.specification.base.master.fungsi;
+package com.rendyrobbani.latte.schema.specification.base.master.urusan;
 
 import com.rendyrobbani.common.schema.Column;
 import com.rendyrobbani.common.schema.Constraint;
@@ -15,14 +15,14 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class MasterSubfungsiTable {
+public final class MasterBidangTable {
 
 	private static List<Column> columns;
 
 	public static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
-			columns.add(LatteColumnFactory.createSubfungsiCode("code", false));
+			columns.add(LatteColumnFactory.createBidangCode("code", false));
 			columns.add(LatteColumnFactory.createVarChar("name", false));
 			columns.addAll(LockableTable.getColumns());
 			columns.addAll(AuditableTable.getColumns());

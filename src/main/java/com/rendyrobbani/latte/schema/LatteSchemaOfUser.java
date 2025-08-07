@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class LatteSchemaOfUser {
 
-	private static final String NAME = null;
+	private static final String NAME = "User";
 
 	private static List<Table> tables;
 

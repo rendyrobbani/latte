@@ -38,16 +38,6 @@ public final class LogsMasterFungsiTable {
 		return table;
 	}
 
-	private static List<Constraint> checks;
-
-	public static List<Constraint> getChecks() {
-		if (checks == null) {
-			checks = new ArrayList<>();
-			checks.addAll(MasterFungsiTable.getChecks(checks.size() + 1, getTable()));
-		}
-		return checks;
-	}
-
 	private static List<Constraint> foreignKeys;
 
 	public static List<Constraint> getForeignKeys() {

@@ -1,7 +1,7 @@
 package com.rendyrobbani.latte.schema.factory;
 
-import com.rendyrobbani.common.classification.fungsi.FungsiClassification;
-import com.rendyrobbani.common.classification.fungsi.SubfungsiClassification;
+import com.rendyrobbani.common.classification.urusan.UrusanClassification;
+import com.rendyrobbani.common.classification.urusan.BidangClassification;
 import com.rendyrobbani.common.schema.Check;
 import com.rendyrobbani.common.schema.CheckFactory;
 import com.rendyrobbani.common.schema.Column;
@@ -49,14 +49,13 @@ public final class LatteCheckFactory {
 		return create(index, table, logic);
 	}
 
-	public static Check columnEquals(Integer index, Table table, Column column, Integer value) {
+	public static Check columnEquals(Integer index, Table table, Column column, String value) {
 		var logic = column.getName() + " = " + value;
 		return create(index, table, logic);
 	}
 
-	public static Check columnEquals(Integer index, Table table, Column column, String value) {
-		var logic = column.getName() + " = '" + value + "'";
-		return create(index, table, logic);
+	public static Check columnEquals(Integer index, Table table, Column column, Integer value) {
+		return columnEquals(index, table, column, value.toString());
 	}
 
 	public static Check columnEqualsColumn(Integer index, Table table, Column column1, Column column2) {
@@ -96,14 +95,6 @@ public final class LatteCheckFactory {
 
 	public static Check columnIsGender(Integer index, Table table, Column column) {
 		return CheckFactory.columnIn(index, table, column, Arrays.stream(Gender.values()).map(Gender::getValue).toArray(Integer[]::new));
-	}
-
-	public static Check columnIsFungsiCode(Integer index, Table table, Column column) {
-		return CheckFactory.columnRegex(index, table, column, FungsiClassification.MARIADB_REGEX);
-	}
-
-	public static Check columnIsSubfungsiCode(Integer index, Table table, Column column) {
-		return CheckFactory.columnRegex(index, table, column, SubfungsiClassification.MARIADB_REGEX);
 	}
 
 }

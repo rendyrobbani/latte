@@ -149,4 +149,20 @@ public final class LatteColumnFactory {
 		return createSubfungsiCode(name, isNullable, false);
 	}
 
+	public static Column createUrusanCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 1, isNullable, isPrimaryKey);
+	}
+
+	public static Column createUrusanCode(String name, boolean isNullable) {
+		return createUrusanCode(name, isNullable, false);
+	}
+
+	public static Column createBidangCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 4, isNullable, isPrimaryKey);
+	}
+
+	public static Column createBidangCode(String name, boolean isNullable) {
+		return createBidangCode(name, isNullable, false);
+	}
+
 }

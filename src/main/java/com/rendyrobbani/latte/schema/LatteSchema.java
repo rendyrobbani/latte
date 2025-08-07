@@ -4,19 +4,20 @@ import com.rendyrobbani.common.schema.Schema;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class LatteSchema {
 
-	private static Map<String, Schema> schemas;
+	private static List<Schema> schemas;
 
-	public static Map<String, Schema> getSchemas() {
+	public static List<Schema> getSchemas() {
 		if (schemas == null) {
-			schemas = new HashMap<>();
-			schemas.put("User", LatteSchemaOfUser.getSchema());
-			schemas.put("MasterFungsi", LatteSchemaOfMasterFungsi.getSchema());
+			schemas = new ArrayList<>();
+			schemas.add(LatteSchemaOfUser.getSchema());
+			schemas.add(LatteSchemaOfMasterFungsi.getSchema());
+			schemas.add(LatteSchemaOfMasterUrusan.getSchema());
 		}
 		return schemas;
 	}

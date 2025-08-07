@@ -14,16 +14,15 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class LockableTable {
+public final class LoggableTable {
 
 	private static List<Column> columns;
 
 	public static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
-			columns.add(LatteColumnFactory.createBoolean("is_locked", false));
-			columns.add(LatteColumnFactory.createDateTime("locked_at", true));
-			columns.add(LatteColumnFactory.createNIP("locked_by", true));
+			columns.add(LatteColumnFactory.createDateTime("logged_at", true));
+			columns.add(LatteColumnFactory.createNIP("logged_by", true));
 		}
 		return columns;
 	}
@@ -33,7 +32,7 @@ public final class LockableTable {
 		foreignKeys.add(ForeignKeyFactory.create(
 				foreignKeys.size() + index,
 				table,
-				table.getColumns().stream().filter(c -> c.getName().equals("locked_by")).toList(),
+				table.getColumns().stream().filter(c -> c.getName().equals("logged_by")).toList(),
 				DataUserTable.getTable(),
 				List.of(DataUserTable.getTable().getId())
 		));

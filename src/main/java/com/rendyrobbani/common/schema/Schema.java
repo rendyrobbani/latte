@@ -24,8 +24,8 @@ public interface Schema {
 
 		if (!this.getTables().isEmpty()) value.add(String.join(System.lineSeparator(), this.getTables().stream().map(Table::getCreateDDL).toList()));
 		if (!this.getChecks().isEmpty()) value.add(String.join(System.lineSeparator(), this.getChecks().stream().map(Constraint::getCreateDDL).toList()));
-		if (!this.getForeignKeys().isEmpty()) value.add(String.join(System.lineSeparator(), this.getForeignKeys().stream().map(Constraint::getCreateDDL).toList()));
 		if (!this.getUniqueKeys().isEmpty()) value.add(String.join(System.lineSeparator(), this.getUniqueKeys().stream().map(Constraint::getCreateDDL).toList()));
+		if (!this.getForeignKeys().isEmpty()) value.add(String.join(System.lineSeparator(), this.getForeignKeys().stream().map(Constraint::getCreateDDL).toList()));
 
 		return String.join(System.lineSeparator().repeat(2), value);
 	}

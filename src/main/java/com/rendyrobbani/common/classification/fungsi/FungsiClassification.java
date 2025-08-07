@@ -4,7 +4,7 @@ import com.rendyrobbani.common.classification.Classification;
 
 public interface FungsiClassification extends Classification {
 
-	String VALUE = "(\\d{2})";
+	String VALUE = "([0-9]{2})";
 	String REGEX = "^" + VALUE + "$";
 
 	String getFungsiCode();

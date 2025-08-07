@@ -1,11 +1,11 @@
-package com.rendyrobbani.latte.schema.specification.logs.user;
+package com.rendyrobbani.latte.schema.specification.logs.master.fungsi;
 
 import com.rendyrobbani.common.schema.*;
 import com.rendyrobbani.latte.schema.factory.LatteCheckFactory;
 import com.rendyrobbani.latte.schema.factory.LatteColumnFactory;
 import com.rendyrobbani.latte.schema.specification.base.LoggableTable;
-import com.rendyrobbani.latte.schema.specification.base.user.UserTable;
-import com.rendyrobbani.latte.schema.specification.data.user.DataUserTable;
+import com.rendyrobbani.latte.schema.specification.base.master.fungsi.MasterFungsiTable;
+import com.rendyrobbani.latte.schema.specification.data.master.fungsi.DataMasterFungsiTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -14,9 +14,9 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class LogsUserTable {
+public final class LogsMasterFungsiTable {
 
-	public static final String NAME = "logs_user";
+	public static final String NAME = "logs_master_fungsi";
 
 	private static List<Column> columns;
 
@@ -24,9 +24,9 @@ public final class LogsUserTable {
 		if (columns == null) {
 			columns = new ArrayList<>();
 			columns.add(LatteColumnFactory.createBigInt("id", false, true, true));
-			columns.addAll(UserTable.getColumns());
+			columns.addAll(MasterFungsiTable.getColumns());
 			columns.addAll(LoggableTable.getColumns());
-			columns.add(LatteColumnFactory.copyOf("subject_id", DataUserTable.getTable().getId(), false));
+			columns.add(LatteColumnFactory.copyOf("subject_id", DataMasterFungsiTable.getTable().getId(), false));
 		}
 		return columns;
 	}
@@ -43,7 +43,7 @@ public final class LogsUserTable {
 	public static List<Constraint> getChecks() {
 		if (checks == null) {
 			checks = new ArrayList<>();
-			checks.addAll(UserTable.getChecks(checks.size() + 1, getTable()));
+			checks.addAll(MasterFungsiTable.getChecks(checks.size() + 1, getTable()));
 		}
 		return checks;
 	}
@@ -53,15 +53,14 @@ public final class LogsUserTable {
 	public static List<Constraint> getForeignKeys() {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
+			foreignKeys.addAll(MasterFungsiTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
 			foreignKeys.add(ForeignKeyFactory.create(
 					foreignKeys.size() + 1,
 					getTable(),
-					getTable().getColumns().stream().filter(c -> c.getName().equals("subject_id")).toList(),
-					DataUserTable.getTable(),
-					List.of(DataUserTable.getTable().getId())
+					getTable().findColumn("subject_id"),
+					DataMasterFungsiTable.getTable(),
+					DataMasterFungsiTable.getTable().getId()
 			));
-			foreignKeys.addAll(UserTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
-			foreignKeys.addAll(LoggableTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
 		}
 		return foreignKeys;
 	}

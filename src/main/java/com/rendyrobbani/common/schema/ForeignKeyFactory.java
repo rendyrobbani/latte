@@ -32,8 +32,16 @@ public final class ForeignKeyFactory {
 		return new ForeignKeyImpl(name, table, columns, referenceTable, referenceColumns);
 	}
 
+	public static ForeignKey create(String name, Table table, Column column, Table referenceTable, Column referenceColumn) {
+		return create(name, table, List.of(column), referenceTable, List.of(referenceColumn));
+	}
+
 	public static ForeignKey create(Integer index, Table table, List<Column> columns, Table referenceTable, List<Column> referenceColumns) {
 		return create(String.join("_", "fk", table.getName().substring(0, Math.min(58, table.getName().length())), NumberUtil.lpadZero(index, 2)), table, columns, referenceTable, referenceColumns);
+	}
+
+	public static ForeignKey create(Integer index, Table table, Column column, Table referenceTable, Column referenceColumn) {
+		return create(index, table, List.of(column), referenceTable, List.of(referenceColumn));
 	}
 
 }

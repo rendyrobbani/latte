@@ -1,4 +1,4 @@
-package com.rendyrobbani.latte.app.component;
+package com.rendyrobbani.latte.app.web.component;
 
 import com.rendyrobbani.latte.common.vo.NIPFactory;
 import com.rendyrobbani.latte.common.vo.Pangkat;

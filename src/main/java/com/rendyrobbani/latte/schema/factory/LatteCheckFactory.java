@@ -49,6 +49,21 @@ public final class LatteCheckFactory {
 		return create(index, table, logic);
 	}
 
+	public static Check columnEquals(Integer index, Table table, Column column, Integer value) {
+		var logic = column.getName() + " = " + value;
+		return create(index, table, logic);
+	}
+
+	public static Check columnEquals(Integer index, Table table, Column column, String value) {
+		var logic = column.getName() + " = '" + value + "'";
+		return create(index, table, logic);
+	}
+
+	public static Check columnEqualsColumn(Integer index, Table table, Column column1, Column column2) {
+		var logic = column1.getName() + " = " + column2.getName();
+		return create(index, table, logic);
+	}
+
 	public static Check columnNotEquals(Integer index, Table table, Column column, Integer value) {
 		var logic = column.getName() + " <> " + value;
 		return create(index, table, logic);

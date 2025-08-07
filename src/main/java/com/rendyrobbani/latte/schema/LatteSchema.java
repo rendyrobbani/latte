@@ -18,6 +18,7 @@ public final class LatteSchema {
 			schemas.add(LatteSchemaOfUser.getSchema());
 			schemas.add(LatteSchemaOfMasterFungsi.getSchema());
 			schemas.add(LatteSchemaOfMasterUrusan.getSchema());
+			schemas.add(LatteSchemaOfMasterProgram.getSchema());
 		}
 		return schemas;
 	}

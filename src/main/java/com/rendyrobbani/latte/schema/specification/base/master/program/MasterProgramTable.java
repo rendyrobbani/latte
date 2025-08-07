@@ -1,4 +1,4 @@
-package com.rendyrobbani.latte.schema.specification.base.master.urusan;
+package com.rendyrobbani.latte.schema.specification.base.master.program;
 
 import com.rendyrobbani.common.schema.Column;
 import com.rendyrobbani.common.schema.Constraint;
@@ -14,14 +14,14 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class MasterUrusanTable {
+public final class MasterProgramTable {
 
 	private static List<Column> columns;
 
 	public static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
-			columns.add(LatteColumnFactory.createUrusanCode("code", false));
+			columns.add(LatteColumnFactory.createProgramCode("code", false));
 			columns.add(LatteColumnFactory.createVarChar("name", false));
 			columns.addAll(LockableTable.getColumns());
 			columns.addAll(AuditableTable.getColumns());

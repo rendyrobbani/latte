@@ -165,4 +165,12 @@ public final class LatteColumnFactory {
 		return createBidangCode(name, isNullable, false);
 	}
 
+	public static Column createProgramCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 7, isNullable, isPrimaryKey);
+	}
+
+	public static Column createProgramCode(String name, boolean isNullable) {
+		return createProgramCode(name, isNullable, false);
+	}
+
 }

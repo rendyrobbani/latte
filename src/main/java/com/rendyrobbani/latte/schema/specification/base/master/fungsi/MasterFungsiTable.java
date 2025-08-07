@@ -3,7 +3,6 @@ package com.rendyrobbani.latte.schema.specification.base.master.fungsi;
 import com.rendyrobbani.common.schema.Column;
 import com.rendyrobbani.common.schema.Constraint;
 import com.rendyrobbani.common.schema.Table;
-import com.rendyrobbani.latte.schema.factory.LatteCheckFactory;
 import com.rendyrobbani.latte.schema.factory.LatteColumnFactory;
 import com.rendyrobbani.latte.schema.specification.base.AuditableTable;
 import com.rendyrobbani.latte.schema.specification.base.LockableTable;

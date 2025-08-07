@@ -12,15 +12,16 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 @MappedSuperclass
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class UserEntity extends BaseEntity implements User {
 
@@ -28,19 +29,15 @@ public abstract class UserEntity extends BaseEntity implements User {
 	@Column(name = "pangkat")
 	protected Pangkat pangkat;
 
-	@Setter
 	@Column(name = "name")
 	protected String name;
 
-	@Setter
 	@Column(name = "title_prefix")
 	protected String titlePrefix;
 
-	@Setter
 	@Column(name = "title_suffix")
 	protected String titleSuffix;
 
-	@Setter
 	@Column(name = "password")
 	protected String password;
 

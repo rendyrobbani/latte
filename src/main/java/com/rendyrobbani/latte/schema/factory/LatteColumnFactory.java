@@ -142,7 +142,7 @@ public final class LatteColumnFactory {
 	}
 
 	public static Column createSubfungsiCode(String name, boolean isNullable, boolean isPrimaryKey) {
-		return createChar(name, 4, isNullable, isPrimaryKey);
+		return createChar(name, 5, isNullable, isPrimaryKey);
 	}
 
 	public static Column createSubfungsiCode(String name, boolean isNullable) {

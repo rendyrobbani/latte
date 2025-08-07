@@ -44,14 +44,14 @@ public class InitializeAdmin {
 		if (admin == null) {
 			var now = LocalDateTime.now();
 			var nip = NIPFactory.parse(ADMIN_ID);
-			var data = new DataUserEntity(nip, now, nip);
+			var data = new DataUserEntity(now, nip, nip);
 			data.setPangkat(ADMIN_PANGKAT);
 			data.setName(ADMIN_NAME);
 			data.setTitlePrefix(ADMIN_TITLE_PREFIX);
 			data.setTitleSuffix(ADMIN_TITLE_SUFFIX);
 			data.setPassword(ADMIN_PASSWORD);
 			dataUserRepository.save(data);
-			logsUserRepository.save(new LogsUserEntity(data, now, nip));
+			logsUserRepository.save(new LogsUserEntity(now, nip, data));
 			admin = data;
 		}
 		return admin;

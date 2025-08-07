@@ -7,14 +7,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable, HasAuditable {
@@ -47,7 +47,7 @@ public abstract class BaseEntity implements Serializable, HasAuditable {
 	protected NIP deletedBy;
 
 	protected BaseEntity(LocalDateTime createdAt, NIP createdBy) {
-		this.createdAt = createdAt != null ? createdAt : LocalDateTime.now() ;
+		this.createdAt = createdAt != null ? createdAt : LocalDateTime.now();
 		this.createdBy = createdBy;
 		this.updatedAt = null;
 		this.updatedBy = null;

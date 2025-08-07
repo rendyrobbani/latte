@@ -1,11 +1,11 @@
-package com.rendyrobbani.latte.infra.persistence.entity.logs.user;
+package com.rendyrobbani.latte.infra.persistence.entity.logs.master.fungsi;
 
 import com.rendyrobbani.latte.common.vo.NIP;
-import com.rendyrobbani.latte.domain.entity.logs.user.LogsUser;
+import com.rendyrobbani.latte.domain.entity.logs.master.fungsi.LogsMasterFungsi;
 import com.rendyrobbani.latte.infra.persistence.converter.NIPConverter;
-import com.rendyrobbani.latte.infra.persistence.entity.base.user.UserEntity;
-import com.rendyrobbani.latte.infra.persistence.entity.data.user.DataUserEntity;
-import com.rendyrobbani.latte.schema.specification.logs.user.LogsUserTable;
+import com.rendyrobbani.latte.infra.persistence.entity.base.master.fungsi.MasterFungsiEntity;
+import com.rendyrobbani.latte.infra.persistence.entity.data.master.fungsi.DataMasterFungsiEntity;
+import com.rendyrobbani.latte.schema.specification.logs.master.fungsi.LogsMasterFungsiTable;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = LogsUserTable.NAME)
+@Table(name = LogsMasterFungsiTable.NAME)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class LogsUserEntity extends UserEntity implements LogsUser {
+public class LogsMasterFungsiEntity extends MasterFungsiEntity implements LogsMasterFungsi {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +27,8 @@ public class LogsUserEntity extends UserEntity implements LogsUser {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "subject_id")
-	private DataUserEntity subject;
+	@JoinColumn(name = "subject_id", referencedColumnName = "id")
+	private DataMasterFungsiEntity subject;
 
 	@Column(name = "logged_at")
 	private LocalDateTime loggedAt;
@@ -37,27 +37,12 @@ public class LogsUserEntity extends UserEntity implements LogsUser {
 	@Column(name = "logged_by")
 	private NIP loggedBy;
 
-	@Override
-	public NIP getNIP() {
-		if (this.getSubject() == null) return null;
-		return this.getSubject().getNIP();
-	}
-
-	public LogsUserEntity(LocalDateTime loggedAt, NIP loggedBy, DataUserEntity subject) {
+	public LogsMasterFungsiEntity(LocalDateTime loggedAt, NIP loggedBy, DataMasterFungsiEntity subject) {
 		this.loggedAt = loggedAt;
 		this.loggedBy = loggedBy;
 		this.subject = subject;
-		this.pangkat = subject.getPangkat();
+		this.code = subject.getCode();
 		this.name = subject.getName();
-		this.titlePrefix = subject.getTitlePrefix();
-		this.titleSuffix = subject.getTitleSuffix();
-		this.password = subject.getPassword();
-		this.birthDate = subject.getBirthDate();
-		this.startDate = subject.getStartDate();
-		this.gender = subject.getGender();
-		this.number = subject.getNumber();
-		this.isPNS = subject.isPNS();
-		this.isP3K = subject.isP3K();
 		this.isLocked = subject.isLocked();
 		this.lockedAt = subject.getLockedAt();
 		this.lockedBy = subject.getLockedBy();

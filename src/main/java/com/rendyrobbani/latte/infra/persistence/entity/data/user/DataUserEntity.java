@@ -5,17 +5,20 @@ import com.rendyrobbani.latte.common.vo.Pangkat;
 import com.rendyrobbani.latte.domain.entity.data.user.DataUser;
 import com.rendyrobbani.latte.infra.persistence.converter.NIPConverter;
 import com.rendyrobbani.latte.infra.persistence.entity.base.user.UserEntity;
+import com.rendyrobbani.latte.schema.specification.data.user.DataUserTable;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 @Entity
-@Table(name = "data_user")
+@Table(name = DataUserTable.NAME)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DataUserEntity extends UserEntity implements DataUser {
 
@@ -23,7 +26,6 @@ public class DataUserEntity extends UserEntity implements DataUser {
 	@Column(name = "id")
 	private String id;
 
-	@Getter(AccessLevel.NONE)
 	@Convert(converter = NIPConverter.class)
 	@Column(name = "id", insertable = false, updatable = false)
 	private NIP nip;
@@ -47,47 +49,7 @@ public class DataUserEntity extends UserEntity implements DataUser {
 		this.startDate = startDate;
 	}
 
-	@Override
-	public void setLocked(boolean isLocked) {
-		this.isLocked = isLocked;
-	}
-
-	@Override
-	public void setLockedAt(LocalDateTime lockedAt) {
-		this.lockedAt = lockedAt;
-	}
-
-	@Override
-	public void setLockedBy(NIP lockedBy) {
-		this.lockedBy = lockedBy;
-	}
-
-	@Override
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	@Override
-	public void setUpdatedBy(NIP updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	@Override
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	@Override
-	public void setDeletedAt(LocalDateTime deletedAt) {
-		this.deletedAt = deletedAt;
-	}
-
-	@Override
-	public void setDeletedBy(NIP deletedBy) {
-		this.deletedBy = deletedBy;
-	}
-
-	public DataUserEntity(NIP nip, LocalDateTime createdAt, NIP createdBy) {
+	public DataUserEntity(LocalDateTime createdAt, NIP createdBy, NIP nip) {
 		super(createdAt, createdBy);
 		this.id = nip.getValue();
 		this.nip = nip;

@@ -94,11 +94,11 @@ public final class LatteCheckFactory {
 	}
 
 	public static Check columnIsFungsiCode(Integer index, Table table, Column column) {
-		return CheckFactory.columnRegex(index, table, column, FungsiClassification.REGEX);
+		return CheckFactory.columnRegex(index, table, column, FungsiClassification.MARIADB_REGEX);
 	}
 
 	public static Check columnIsSubfungsiCode(Integer index, Table table, Column column) {
-		return CheckFactory.columnRegex(index, table, column, SubfungsiClassification.REGEX);
+		return CheckFactory.columnRegex(index, table, column, SubfungsiClassification.MARIADB_REGEX);
 	}
 
 }

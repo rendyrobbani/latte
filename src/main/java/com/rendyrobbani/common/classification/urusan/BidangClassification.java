@@ -2,8 +2,7 @@
 
 public interface BidangClassification extends UrusanClassification {
 
-	String VALUE = "(?!0.*|.\\.0{2}|X\\.\\d{2}|\\d\\.X{2}$)(X|\\d)\\.(XX|\\d{2})";
-	String REGEX = "^" + VALUE + "$";
+	String REGEX = "^(?!0.*|.\\.0{2}.*|X\\.\\d{2}.*|\\d\\.X{2}.*)(X|\\d)\\.(XX|\\d{2})$";
 
 	String getBidangCode();
 

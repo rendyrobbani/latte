@@ -65,7 +65,10 @@ public final class LatteSchemaOfMasterUrusan {
 	private static List<Constraint> uniqueKeys;
 
 	private static List<Constraint> getUniqueKeys() {
-		if (uniqueKeys == null) uniqueKeys = new ArrayList<>();
+		if (uniqueKeys == null) {
+			uniqueKeys = new ArrayList<>();
+			uniqueKeys.addAll(DataMasterBidangTable.getUniqueKeys());
+		}
 		return uniqueKeys;
 	}
 

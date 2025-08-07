@@ -67,6 +67,8 @@ alter table data_master_program add constraint ck_data_master_program_01 check (
 alter table data_master_program add constraint ck_data_master_program_02 check (urusan_id is null or (left(id, length(urusan_id)) = urusan_id));
 alter table data_master_program add constraint ck_data_master_program_03 check (bidang_id is null or (left(id, length(bidang_id)) = bidang_id));
 
+alter table data_master_program add constraint uk_data_master_program_01 unique key (urusan_id, bidang_id, id);
+
 alter table data_master_program add constraint fk_data_master_program_01 foreign key (locked_by) references data_user (id);
 alter table data_master_program add constraint fk_data_master_program_02 foreign key (created_by) references data_user (id);
 alter table data_master_program add constraint fk_data_master_program_03 foreign key (updated_by) references data_user (id);

@@ -46,6 +46,21 @@ public final class DataMasterSubfungsiTable {
 		return checks;
 	}
 
+	private static List<Constraint> uniqueKeys;
+
+	public static List<Constraint> getUniqueKeys() {
+		if (uniqueKeys == null) {
+			uniqueKeys = new ArrayList<>();
+			uniqueKeys.add(UniqueKeyFactory.create(
+					uniqueKeys.size() + 1,
+					getTable(),
+					List.of(getTable().findColumn("fungsi_id"),
+							getTable().getId())
+			));
+		}
+		return uniqueKeys;
+	}
+
 	private static List<Constraint> foreignKeys;
 
 	public static List<Constraint> getForeignKeys() {

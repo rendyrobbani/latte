@@ -87,6 +87,8 @@ alter table data_master_fungsi add constraint ck_data_master_fungsi_01 check (id
 alter table data_master_subfungsi add constraint ck_data_master_subfungsi_01 check (id = code);
 alter table data_master_subfungsi add constraint ck_data_master_subfungsi_02 check (fungsi_id is null or (left(id, length(fungsi_id)) = fungsi_id));
 
+alter table data_master_subfungsi add constraint uk_data_master_subfungsi_01 unique key (fungsi_id, id);
+
 alter table data_master_fungsi add constraint fk_data_master_fungsi_01 foreign key (locked_by) references data_user (id);
 alter table data_master_fungsi add constraint fk_data_master_fungsi_02 foreign key (created_by) references data_user (id);
 alter table data_master_fungsi add constraint fk_data_master_fungsi_03 foreign key (updated_by) references data_user (id);

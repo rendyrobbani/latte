@@ -55,7 +55,10 @@ public final class LatteSchemaOfMasterProgram {
 	private static List<Constraint> uniqueKeys;
 
 	private static List<Constraint> getUniqueKeys() {
-		if (uniqueKeys == null) uniqueKeys = new ArrayList<>();
+		if (uniqueKeys == null) {
+			uniqueKeys = new ArrayList<>();
+			uniqueKeys.addAll(DataMasterProgramTable.getUniqueKeys());
+		}
 		return uniqueKeys;
 	}
 

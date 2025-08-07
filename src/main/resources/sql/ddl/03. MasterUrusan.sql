@@ -127,6 +127,8 @@ alter table data_master_urusan add constraint ck_data_master_urusan_01 check (id
 alter table data_master_bidang add constraint ck_data_master_bidang_01 check (id = replace(code, 'X', '0'));
 alter table data_master_bidang add constraint ck_data_master_bidang_02 check (urusan_id is null or (left(id, length(urusan_id)) = urusan_id));
 
+alter table data_master_bidang add constraint uk_data_master_bidang_01 unique key (urusan_id, id);
+
 alter table data_master_urusan add constraint fk_data_master_urusan_01 foreign key (locked_by) references data_user (id);
 alter table data_master_urusan add constraint fk_data_master_urusan_02 foreign key (created_by) references data_user (id);
 alter table data_master_urusan add constraint fk_data_master_urusan_03 foreign key (updated_by) references data_user (id);

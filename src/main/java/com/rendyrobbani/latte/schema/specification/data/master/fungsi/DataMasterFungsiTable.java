@@ -42,7 +42,12 @@ public final class DataMasterFungsiTable {
 	public static List<Constraint> getChecks() {
 		if (checks == null) {
 			checks = new ArrayList<>();
-			checks.add(LatteCheckFactory.columnEqualsColumn(checks.size() + 1, getTable(), getTable().getId(), getTable().findColumn("code")));
+			checks.add(LatteCheckFactory.columnEqualsColumn(
+					checks.size() + 1,
+					getTable(),
+					getTable().getId(),
+					getTable().findColumn("code")
+			));
 		}
 		return checks;
 	}

@@ -173,4 +173,20 @@ public final class LatteColumnFactory {
 		return createProgramCode(name, isNullable, false);
 	}
 
+	public static Column createKegiatanCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 12, isNullable, isPrimaryKey);
+	}
+
+	public static Column createKegiatanCode(String name, boolean isNullable) {
+		return createKegiatanCode(name, isNullable, false);
+	}
+
+	public static Column createSubkegiatanCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 17, isNullable, isPrimaryKey);
+	}
+
+	public static Column createSubkegiatanCode(String name, boolean isNullable) {
+		return createSubkegiatanCode(name, isNullable, false);
+	}
+
 }

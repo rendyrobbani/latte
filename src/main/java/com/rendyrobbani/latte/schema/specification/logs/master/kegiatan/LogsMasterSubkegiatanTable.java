@@ -1,0 +1,58 @@
+package com.rendyrobbani.latte.schema.specification.logs.master.kegiatan;
+
+import com.rendyrobbani.common.schema.*;
+import com.rendyrobbani.latte.schema.factory.LatteColumnFactory;
+import com.rendyrobbani.latte.schema.specification.base.LoggableTable;
+import com.rendyrobbani.latte.schema.specification.base.master.kegiatan.MasterSubkegiatanTable;
+import com.rendyrobbani.latte.schema.specification.data.master.kegiatan.DataMasterSubkegiatanTable;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@SuppressWarnings("ConstantValue")
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class LogsMasterSubkegiatanTable {
+
+	public static final String NAME = "logs_master_subkegiatan";
+
+	private static List<Column> columns;
+
+	public static List<Column> getColumns() {
+		if (columns == null) {
+			columns = new ArrayList<>();
+			columns.add(LatteColumnFactory.createBigInt("id", false, true, true));
+			columns.addAll(MasterSubkegiatanTable.getColumns());
+			columns.addAll(LoggableTable.getColumns());
+			columns.add(LatteColumnFactory.copyOf("subject_id", DataMasterSubkegiatanTable.getTable().getId(), false));
+		}
+		return columns;
+	}
+
+	private static Table table;
+
+	public static Table getTable() {
+		if (table == null) table = TableFactory.create(NAME, getColumns());
+		return table;
+	}
+
+	private static List<Constraint> foreignKeys;
+
+	public static List<Constraint> getForeignKeys() {
+		if (foreignKeys == null) {
+			foreignKeys = new ArrayList<>();
+			foreignKeys.addAll(MasterSubkegiatanTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
+			foreignKeys.addAll(LoggableTable.getForeignKeys(foreignKeys.size() + 1, getTable()));
+			foreignKeys.add(ForeignKeyFactory.create(
+					foreignKeys.size() + 1,
+					getTable(),
+					getTable().findColumn("subject_id"),
+					DataMasterSubkegiatanTable.getTable(),
+					DataMasterSubkegiatanTable.getTable().getId()
+			));
+		}
+		return foreignKeys;
+	}
+
+}
